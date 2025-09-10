@@ -1,0 +1,88 @@
+								WordleLogic Java Edition by Imam Mishkat 
+
+Brainstorming:
+
+Assuming the word is: HELLO
+H -> 0
+E -> 1
+L -> 2
+L -> 3
+O -> 5
+
+or 
+
+(I will implement this mapping technique)
+0 -> H
+1 -> E
+2 -> L
+3 -> L
+4 -> O
+
+User inputs: HAPPY
+
+Index: Element
+0	H
+Prints out: 'H'APPY
+
+User inputs: HEART
+
+Index: Element
+0	H
+1       E
+Prints out: 'H''E'ART
+
+(General idea of what to accomplish)
+
+Program will loop with user input,
+for every index of user input, if element(key) exists in hashmap, then does the index of that match the value(index of that element)
+that is stored in the HashMap if it does then return with ' ' on the sides, but if it exists and doesnt match the value(index of the element)
+then return with * *. If it's not in the HashMap then just do nothing.
+
+To handle lower case sitations, the program will convert the given string to all upper case.
+
+
+Structure of the Class:
+
+Variables:
+- a private constant variable MAX_TRIES_ALLOWED = 5
+- a private String array, to hold a list of words called wordList
+- a private cursor variable: the cursor will allow the class to point to the next word in the list
+- a private HashMap variable called wordMap, to map the selected word (which will be selected using the cursor): key will be the index and value will be the element,
+  give it a size of MAX_TRIES_ALLOWED
+- a private String variable called currWord, to contain the current word
+- a private String variable called modVal, to print the modified string with ' ' and * *
+- a private boolean value called gameOver, to keep track of whether game was won or not
+
+Constructor:
+
+- a constructor, which will take an Integer array to set up the list. It would then set up the wordList array, and set cursor = -1 (since cursor isn't pointing to anything)
+
+Methods:
+- void setWord(){
+	// parameters: none 
+	// body:
+	// increments cursor to point to the next index
+	// sets currWord to where the cursor is pointing, currWord = wordList[cursor]
+	// sets up the HashMap (frequency hash map, maps the amount of times a word appears)
+	// no return 
+}
+- Boolean isWordAcceptable(String userInput){
+	// parameters: user input
+	// body:
+	// checks if userInput.length() == MAX_TRIES_ALLOWED
+	// (will implement this later) checks if user input is present in the 5 letter word list file, to ensure the input is an actual word
+	// returns true or false
+}
+
+- String wordCheck(String userInput){
+	// parameters: user input
+	// body:
+	// loops through user input for MAX_TRIES_ALLOWED
+	// first checks if element present in frequency map
+	// if it does, then decrement the frequency by 1
+	// then check if the current index matches that with the word
+	// if it does then return with ' ', else return with * *
+	// if not in frequency map, then do nothing
+}
+
+
