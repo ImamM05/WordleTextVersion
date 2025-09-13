@@ -47,7 +47,7 @@ Variables:
 - a private constant variable MAX_TRIES_ALLOWED = 5
 - a private String array, to hold a list of words called wordList
 - a private cursor variable: the cursor will allow the class to point to the next word in the list
-- a private HashMap variable called wordMap, to map the selected word (which will be selected using the cursor): key will be the index and value will be the element,
+- a private HashMap variable called lettFreqMap, to map the amount of times a letter appears: key will be the letter and value will be the frequency,
   give it a size of MAX_TRIES_ALLOWED
 - a private String variable called currWord, to contain the current word
 - a private String variable called modVal, to print the modified string with ' ' and * *
