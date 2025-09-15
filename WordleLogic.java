@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class WordleLogic
 {
-    private final int MAX_TRIES_ALLOWED = 5;
+    private final int MAX_TRIES_ALLOWED = 5, MAX_LENGTH = 5;
     private String[] wordList = new String[20];
     private int cursor;
     private HashMap<Character, Integer> lettFreqMap = new HashMap<>();
@@ -19,6 +19,18 @@ public class WordleLogic
 
     private void setWord() {
         cursor++;
+        currWord = wordList[cursor];
+        
+        for (int i = 0; i < MAX_LENGTH; i++)
+        {
+            int amount = 1;
+            if (lettFreqMap.containsKey(currWord.charAt(i)))
+            {
+                lettFreqMap.put(currWord.charAt(i), amount++);
+            } else {
+                lettFreqMap.put(currWord.charAt(i), amount);
+            }
+        }
     }
 
     private boolean isWordAcceptable(String userInput) {
