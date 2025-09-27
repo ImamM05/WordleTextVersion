@@ -1,5 +1,6 @@
 
 import java.util.HashMap;
+import java.util.Set;
 
 
 public class WordleLogic
@@ -21,20 +22,22 @@ public class WordleLogic
         modStr = "";
     }
 
-    private void setWord() {
+    public void setWord() {
+        char currChar;
         cursor++;
         currWord = wordList[cursor];
         
         for (int i = 0; i < MAX_LENGTH; i++)
         {
             int amount = 1;
-            if (charFreqMap.containsKey(currWord.charAt(i)))
+            currChar = currWord.charAt(i);
+            if (charFreqMap.containsKey(currChar))
             {
-                charFreqMap.put(currWord.charAt(i), amount++);
+                charFreqMap.put(currChar, amount + 1);
             } else {
-                charFreqMap.put(currWord.charAt(i), amount);
+                charFreqMap.put(currChar, amount);
             }
-            wordIndexMap.put(i, currWord.charAt(i));
+            wordIndexMap.put(i, currChar);
         }
     }
 
@@ -42,15 +45,14 @@ public class WordleLogic
         return true; // placeholder
     }
 
-    public void checkWordMatch(String inputStr)
+    public void checkWordMatch(String userInput)
     {
-        setWord();
-        assert isWordAcceptable(inputStr);
+        assert isWordAcceptable(userInput);
 
         char currChar;
-        for (int i = 0; i < inputStr.length(); i++)
+        for (int i = 0; i < userInput.length(); i++)
         {
-            currChar = inputStr.charAt(i);
+            currChar = userInput.charAt(i);
 
             // character is in the frequency map and its value is > 0
             if (charFreqMap.containsKey(currChar) && charFreqMap.get(currChar) > 0)
