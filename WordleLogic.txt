@@ -18,24 +18,71 @@ or
 3 -> L
 4 -> O
 
-User inputs: HAPPY
+(frequency map to store how many times a character appears)
+H -> 1
+E -> 1
+L -> 2
+O -> 1
+When checking if the input word matches the target word, program can first check if each individual character
+appears in the frequency map or not and its value is more than 0, if it does then decrement its frequency: 
+reason for Frequency map:
+1. Allows program to know HOW MANY TIMES a character appears in the target word
+(needed to check if user input contains that character (whether in correct position or not) and how many of times is it allowed)
 
-Index: Element
-0	H
-Prints out: 'H'APPY
+2. Example with 'H', since H appears once, and now we know the input word has H as a character, we can decrement the amount of H by 1
+this sets H -> 0, this way we can ensure there are no more than 1 H in our word; similar logic for other words
 
-User inputs: HEART
+(Test demo)
+current word: HAPPY
 
-Index: Element
-0	H
-1       E
-Prints out: 'H''E'ART
+(frequency map)
+H -> 1
+A -> 1
+P -> 2
+Y -> 1
+
+(index map)
+0 -> H
+1 -> A
+2 -> P 
+3 -> P 
+4 -> Y 
+
+user inputs: APPLE
+
+(program loops through the string)
+loop 1:
+- A is in Frequency map, value of A is greater than 0
+- Value of A is decremented by 1; current value of A is 0
+- Value of 0 (from index map) has character H, H doesn't equal to A 
+- return: *A*
+
+loop 2:
+- P is in Frequency map, value of P is greater than 0
+- Value of P is decremented by 1; current value of P is 1
+- Value of 1 (from index map) has character A, H doesn't equal to P 
+- return: *A**P*
+
+loop 3:
+- P is in Frequency map, value of P is greater than 0
+- Value of P is decremented by 1; current value of P is 0
+- Value of 2 (from index map) has character P, P equalS to P 
+- return: *A**P*'P'
+
+loop 4:
+- L is NOT in Frequency map
+- return: *A**P*'P'L
+
+loop 5:
+- E is NOT in Frequency map
+- return: *A**P*'P'LE
+
 
 (General idea of what to accomplish)
 
 Program will loop with user input,
-for every index of user input, if element(key) exists in hashmap, then does the index of that match the value(index of that element)
-that is stored in the HashMap if it does then return with ' ' on the sides, but if it exists and doesnt match the value(index of the element)
+for every index of user input, if character(key) exists in  frequency hashmap, then does the index of that match the value(index of that element)
+that is stored in the index HashMap if it does then return with ' ' on the sides, but if it exists and doesnt match the value(index of the element)
 then return with * *. If it's not in the HashMap then just do nothing.
 
 To handle lower case sitations, the program will convert the given string to all upper case.
@@ -47,10 +94,10 @@ Variables:
 - a private constant variable MAX_TRIES_ALLOWED = 5
 - a private String array, to hold a list of words called wordList
 - a private cursor variable: the cursor will allow the class to point to the next word in the list
-- a private HashMap variable called lettFreqMap, to map the amount of times a letter appears: key will be the letter and value will be the frequency,
-  give it a size of MAX_TRIES_ALLOWED
+- a private HashMap variable called charFreqMap, to map the amount of times a letter appears: key will be the letter and value will be the frequency
+- a private HashMap variable called wordIndexMap, to map the index of each character: key will be index, value will be the character
 - a private String variable called currWord, to contain the current word
-- a private String variable called modVal, to print the modified string with ' ' and * *
+- a private String variable called modStr, to print the modified string with ' '(correct position) and * *(wrong position)
 - a private boolean value called gameOver, to keep track of whether game was won or not
 
 Constructor:
@@ -58,31 +105,39 @@ Constructor:
 - a constructor, which will take an Integer array to set up the list. It would then set up the wordList array, and set cursor = -1 (since cursor isn't pointing to anything)
 
 Methods:
-- void setWord(){
+- private void setWord(){
 	// parameters: none 
 	// body:
 	// increments cursor to point to the next index
 	// sets currWord to where the cursor is pointing, currWord = wordList[cursor]
 	// sets up the HashMap (frequency hash map, maps the amount of times a word appears)
+	// sets up the HashMap (index hash map, where each index is mapped to its character value)
 	// no return 
 }
-- Boolean isWordAcceptable(String userInput){
+- private boolean isWordAcceptable(String userInput){
+	(has not been implemented yet)
 	// parameters: user input
 	// body:
+	// checks if userInput is a String or not 
 	// checks if userInput.length() == MAX_TRIES_ALLOWED
 	// (will implement this later) checks if user input is present in the 5 letter word list file, to ensure the input is an actual word
 	// returns true or false
 }
 
-- String wordCheck(String userInput){
+- public string wordCheck(String userInput){
 	// parameters: user input
 	// body:
-	// loops through user input for MAX_TRIES_ALLOWED
-	// first checks if element present in frequency map
-	// if it does, then decrement the frequency by 1
-	// then check if the current index matches that with the word
+	// runs setWord() helper method, to set the hash maps
+	// asserts isWordAcceptable(userInput), to ensure user input matches the conditions
+
+	// declares a local variable called currChar 
+	// loops through user input for MAX_TRIES_ALLOWED, ex: (i = 0; i < MAX_TRIES_ALLOWED; i++)
+	// currChar is initialized to be the character of the word at index i
+	// first checks if element present in frequency map and the amount of times it appears is greater than 0
+	// if condition true, then decrement the frequency of that character in the Hash map by 1
+	// then check if the current index matches that with the word (using the wordIndexMap, ex: currChar == wordIndexMap.get(i))
 	// if it does then return with ' ', else return with * *
-	// if not in frequency map, then do nothing
+	// if not in frequency map, then do nothing to the word
 }
 
 
