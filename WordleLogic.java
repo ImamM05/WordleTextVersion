@@ -41,6 +41,7 @@ public class WordleLogic
         }
     }
 
+    // private helper method
     private boolean isWordAcceptable(String userInput) {
         return true; // placeholder
     }
@@ -62,16 +63,18 @@ public class WordleLogic
                 // checks whether currChar matches the actual character at index i
                 if (currChar == wordIndexMap.get(i))
                 {
-                    modStr += "'" + currChar + "'";
+                    // ternary operators to handle edge cases while printing
+                    modStr += (i == 0 ? "'" : " '") + currChar + (i == userInput.length() - 1 ? "'" : "' ");
                 }
                 else
                 {
-                    modStr += "*"+ currChar + "*";
+                    // ternary operators to handle edge cases while printing
+                    modStr += (i == 0 ? "*" : " *") + currChar + (i == userInput.length() - 1 ? "*" : "* ");
                 }
             }
             else 
             {
-                modStr += currChar;
+                modStr += (i == 0 ? "" : " ") + currChar + (i == userInput.length() - 1 ? "" : " ");
             }
         }
     }
