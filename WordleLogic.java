@@ -28,13 +28,13 @@ public class WordleLogic
         
         for (int i = 0; i < MAX_LENGTH; i++)
         {
-            int amount = 1;
             currChar = currWord.charAt(i);
-            if (charFreqMap.containsKey(currChar))
+            if (!charFreqMap.containsKey(currChar))
             {
-                charFreqMap.put(currChar, amount + 1);
+                charFreqMap.put(currChar, 1);
             } else {
-                charFreqMap.put(currChar, amount);
+                int prevAmt = charFreqMap.get(currChar);
+                charFreqMap.put(currChar, prevAmt + 1);
             }
             wordIndexMap.put(i, currChar);
         }
