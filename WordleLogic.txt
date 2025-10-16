@@ -105,7 +105,7 @@ Constructor:
 - a constructor, which will take an Integer array to set up the list. It would then set up the wordList array, and set cursor = -1 (since cursor isn't pointing to anything)
 
 Methods:
-- private void setWord(){
+- private void setMap(){
 	// parameters: none 
 	// body:
 	// increments cursor to point to the next index
@@ -138,6 +138,26 @@ Methods:
 	// then check if the current index matches that with the word (using the wordIndexMap, ex: currChar == wordIndexMap.get(i))
 	// if it does then return with ' ', else return with * *
 	// if not in frequency map, then do nothing to the word
+}
+
+Structure of Utility.java 
+Contains functional interface WordsFiveLetter, and immutable class Utility
+
+@FunctionalInterface 
+interface WordsFiveLetter {
+	// has the abstract method: HashMap<Integer, String> setFiveLetterWords();
+}
+
+final class Utility{
+	// creates a lambda expression that defines what setFiveLetterWords will do
+	// WordsFiveLetter wordList = () -> { 
+		- First creates a HashMap<Integer, String> words. This will be returned
+		- Then creates a File object called file, which accesses the text file Five_Letter_Words.text
+		- Then using a try with properties-catch exception handling it accesses the inner contents of the file and stores them in the HashMap
+		- We use BufferedReader object which takes an Reader object (new FileReader(file)), and the FileReader itself takes the file object
+		- BufferedReader's object is called br, and it utilizes the readLine() to reach each line, only stopping when its null- no more line to read
+		- If for some reason file couldnt be read or doesn't exist, then throw IOException error and print with an error message.
+	}
 }
 
 

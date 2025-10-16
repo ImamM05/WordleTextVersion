@@ -1,11 +1,9 @@
-
 import java.util.HashMap;
-
 
 public class WordleLogic
 {
-    private final int MAX_TRIES_ALLOWED = 5, MAX_LENGTH = 5;
-    private final String[] wordList;
+    private static final int MAX_TRIES_ALLOWED = 5, MAX_LENGTH = 5;
+    private final HashMap<Integer, String> wordList;
     private int cursor;
     private final HashMap<Character, Integer> charFreqMap;
     private final HashMap<Integer, Character> wordIndexMap;
@@ -13,22 +11,24 @@ public class WordleLogic
     private String modStr;
     private boolean gameOver = false;
 
-    public WordleLogic(String[] arr) {
-        wordList = arr;
+    public WordleLogic() {
+        wordList = Utility.wordList.setFiveLetterWords();
         cursor = -1;
         charFreqMap = new HashMap<>();
         wordIndexMap = new HashMap<>();
         modStr = "";
     }
 
-    public void setWord() {
+    public void setMap() {
         char currChar;
         cursor++;
-        currWord = wordList[cursor];
+        currWord = wordList.get(cursor);
+        System.out.println(currWord);
         
         for (int i = 0; i < MAX_LENGTH; i++)
         {
             currChar = currWord.charAt(i);
+            // logic for creating frequency map
             if (!charFreqMap.containsKey(currChar))
             {
                 charFreqMap.put(currChar, 1);
@@ -36,12 +36,20 @@ public class WordleLogic
                 int prevAmt = charFreqMap.get(currChar);
                 charFreqMap.put(currChar, prevAmt + 1);
             }
+            // adds the word to the index map
             wordIndexMap.put(i, currChar);
         }
     }
 
     // private helper method
     private boolean isWordAcceptable(String userInput) {
+        /** 
+        try {
+            throw new IllegalArgumentException();
+        } catch (IllegalArgumentException e) {
+            System.err.println(userInput +" is not a word.");
+        }
+        */
         return true; // placeholder
     }
 
