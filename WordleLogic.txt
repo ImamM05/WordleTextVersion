@@ -108,8 +108,12 @@ Methods:
 - private void setMap(){
 	// parameters: none 
 	// body:
-	// increments cursor to point to the next index
-	// sets currWord to where the cursor is pointing, currWord = wordList[cursor]
+	// increments cursor to point to the next index of the hashmap, wordlist
+	// sets currWord to where the cursor is pointing, currWord = wordList.get(cursor)
+	// now in the loop where Frequency hash map and index hash map are set: 
+	// we will be adding each character to those maps, so before we do that we use: currChar = currWord.charAt(i);
+	// then we set that character to uppercase (since code will compare the uppercase variant of the word): currChar = Character.toUpperCase(currChar);
+	// this saves us unncessary O(n) case when adding the word to the wordList hash map
 	// sets up the HashMap (frequency hash map, maps the amount of times a word appears)
 	// sets up the HashMap (index hash map, where each index is mapped to its character value)
 	// no return 

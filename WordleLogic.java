@@ -28,6 +28,7 @@ public class WordleLogic
         for (int i = 0; i < MAX_LENGTH; i++)
         {
             currChar = currWord.charAt(i);
+            currChar = Character.toUpperCase(currChar);
             // logic for creating frequency map
             if (!charFreqMap.containsKey(currChar))
             {

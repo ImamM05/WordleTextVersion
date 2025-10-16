@@ -23,7 +23,7 @@ public final class Utility
             int count = 0;
             while((line = br.readLine()) != null)
             {
-                words.put(count, line.toUpperCase());
+                words.put(count, line);
                 count++;
             }
         }
